@@ -6,7 +6,7 @@
  */
 
 #include "7_segment_led.h"
-
+#include "timer.h"
 void resetAllDigits(){
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
@@ -95,4 +95,63 @@ void display7SEG(int num){
 			break;
 		}
     }
+}
+
+const int MAX_LED = 4;
+int index_led = 0;
+int led_buffer[4] = {1, 2, 3, 4};
+void update7SEG(int index) {
+    switch (index) {
+        case 0:{
+            // Display the first 7 SEG with led_buffer[0]
+        	resetAllDigits();
+        	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);
+        	display7SEG(led_buffer[0]);
+            break;
+        }
+        case 1:{
+            // Display the second 7 SEG with led_buffer[1]
+        	resetAllDigits();
+        	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_RESET);
+        	display7SEG(led_buffer[1]);
+            break;
+        }
+        case 2:{
+            // Display the third 7 SEG with led_buffer[2]
+        	resetAllDigits();
+        	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, GPIO_PIN_RESET);
+        	display7SEG(led_buffer[2]);
+            break;
+        }
+        case 3:{
+            // Display the fourth 7 SEG with led_buffer[3]
+        	resetAllDigits();
+        	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_RESET);
+        	display7SEG(led_buffer[3]);
+            break;
+        }
+        default:{
+            break;
+        }
+    }
+}
+
+void init_exercise3(){
+	resetAllDigits();
+	HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, 0);
+	setTimer(1, 50);
+	setTimer(2, 50);
+}
+void exercise3_run(){
+	if (timer_flag[1] == 1){
+		setTimer(1, 100);
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+	}
+	if (timer_flag[2] == 1){
+		setTimer(2, 50);
+		update7SEG(index_led++);
+		if (index_led >= MAX_LED) {
+			index_led = 0;
+		}
+	}
 }
