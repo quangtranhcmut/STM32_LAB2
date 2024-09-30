@@ -9,41 +9,41 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .rodata       00000024  08001ec8  08001ec8  00011ec8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08001eec  08001eec  00020010  2**0
+  3 .ARM.extab    00000000  08001eec  08001eec  0002001c  2**0
                   CONTENTS
-  4 .ARM          00000000  08001eec  08001eec  00020010  2**0
+  4 .ARM          00000000  08001eec  08001eec  0002001c  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08001eec  08001eec  00020010  2**0
+  5 .preinit_array 00000000  08001eec  08001eec  0002001c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   6 .init_array   00000004  08001eec  08001eec  00011eec  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   7 .fini_array   00000004  08001ef0  08001ef0  00011ef0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000010  20000000  08001ef4  00020000  2**2
+  8 .data         0000001c  20000000  08001ef4  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000000bc  20000010  08001f04  00020010  2**2
+  9 .bss          000000bc  2000001c  08001f10  0002001c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  200000cc  08001f04  000200cc  2**0
+ 10 ._user_heap_stack 00000600  200000d8  08001f10  000200d8  2**0
                   ALLOC
- 11 .ARM.attributes 00000029  00000000  00000000  00020010  2**0
+ 11 .ARM.attributes 00000029  00000000  00000000  0002001c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00008ec3  00000000  00000000  00020039  2**0
+ 12 .debug_info   00008ee3  00000000  00000000  00020045  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001930  00000000  00000000  00028efc  2**0
+ 13 .debug_abbrev 00001930  00000000  00000000  00028f28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000009f0  00000000  00000000  0002a830  2**3
+ 14 .debug_aranges 000009f0  00000000  00000000  0002a858  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000908  00000000  00000000  0002b220  2**3
+ 15 .debug_ranges 00000908  00000000  00000000  0002b248  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000169b6  00000000  00000000  0002bb28  2**0
+ 16 .debug_macro  000169b6  00000000  00000000  0002bb50  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000add5  00000000  00000000  000424de  2**0
+ 17 .debug_line   0000adc7  00000000  00000000  00042506  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000820a8  00000000  00000000  0004d2b3  2**0
+ 18 .debug_str    000820a8  00000000  00000000  0004d2cd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000cf35b  2**0
+ 19 .comment      00000053  00000000  00000000  000cf375  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002788  00000000  00000000  000cf3b0  2**2
+ 20 .debug_frame  00002788  00000000  00000000  000cf3c8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -60,7 +60,7 @@ Disassembly of section .text:
  800011e:	2301      	movs	r3, #1
  8000120:	7023      	strb	r3, [r4, #0]
  8000122:	bd10      	pop	{r4, pc}
- 8000124:	20000010 	.word	0x20000010
+ 8000124:	2000001c 	.word	0x2000001c
  8000128:	00000000 	.word	0x00000000
  800012c:	08001eb0 	.word	0x08001eb0
 
@@ -73,7 +73,7 @@ Disassembly of section .text:
  800013a:	f3af 8000 	nop.w
  800013e:	bd08      	pop	{r3, pc}
  8000140:	00000000 	.word	0x00000000
- 8000144:	20000014 	.word	0x20000014
+ 8000144:	20000020 	.word	0x20000020
  8000148:	08001eb0 	.word	0x08001eb0
 
 0800014c <resetAllDigits>:
@@ -449,18 +449,18 @@ void display7SEG(int num){
 void init_exercise2(){
  80003bc:	b580      	push	{r7, lr}
  80003be:	af00      	add	r7, sp, #0
-	setTimer(0, 50);
- 80003c0:	2132      	movs	r1, #50	; 0x32
+	setTimer(0, 0);
+ 80003c0:	2100      	movs	r1, #0
  80003c2:	2000      	movs	r0, #0
  80003c4:	f000 fa06 	bl	80007d4 <setTimer>
-	setTimer(1, 100);
- 80003c8:	2164      	movs	r1, #100	; 0x64
+	setTimer(1, 0);
+ 80003c8:	2100      	movs	r1, #0
  80003ca:	2001      	movs	r0, #1
  80003cc:	f000 fa02 	bl	80007d4 <setTimer>
 	resetAllDigits();
  80003d0:	f7ff febc 	bl	800014c <resetAllDigits>
-	HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, 0);
- 80003d4:	2200      	movs	r2, #0
+	HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, 1);
+ 80003d4:	2201      	movs	r2, #1
  80003d6:	2110      	movs	r1, #16
  80003d8:	4802      	ldr	r0, [pc, #8]	; (80003e4 <init_exercise2+0x28>)
  80003da:	f000 fd53 	bl	8000e84 <HAL_GPIO_WritePin>
@@ -473,105 +473,100 @@ void init_exercise2(){
 080003e8 <display7SegLed>:
 
 int idx_e2 = 0;
-int num_e2 = 1;
+int num_e2[4] = {1, 2, 3, 0};
 void display7SegLed(){
  80003e8:	b580      	push	{r7, lr}
  80003ea:	af00      	add	r7, sp, #0
-	setDigit(idx_e2);
+	if (timer_flag[0] == 1){
  80003ec:	4b21      	ldr	r3, [pc, #132]	; (8000474 <display7SegLed+0x8c>)
  80003ee:	681b      	ldr	r3, [r3, #0]
- 80003f0:	4618      	mov	r0, r3
- 80003f2:	f7ff fec7 	bl	8000184 <setDigit>
-	display7SEG(num_e2);
- 80003f6:	4b20      	ldr	r3, [pc, #128]	; (8000478 <display7SegLed+0x90>)
- 80003f8:	681b      	ldr	r3, [r3, #0]
- 80003fa:	4618      	mov	r0, r3
- 80003fc:	f7ff ff36 	bl	800026c <display7SEG>
-	if (timer_flag[0] == 1){
- 8000400:	4b1e      	ldr	r3, [pc, #120]	; (800047c <display7SegLed+0x94>)
- 8000402:	681b      	ldr	r3, [r3, #0]
- 8000404:	2b01      	cmp	r3, #1
- 8000406:	d12f      	bne.n	8000468 <display7SegLed+0x80>
+ 80003f0:	2b01      	cmp	r3, #1
+ 80003f2:	d13c      	bne.n	800046e <display7SegLed+0x86>
 		setTimer(0, 50);
- 8000408:	2132      	movs	r1, #50	; 0x32
- 800040a:	2000      	movs	r0, #0
- 800040c:	f000 f9e2 	bl	80007d4 <setTimer>
-		switch (idx_e2) {
- 8000410:	4b18      	ldr	r3, [pc, #96]	; (8000474 <display7SegLed+0x8c>)
- 8000412:	681b      	ldr	r3, [r3, #0]
- 8000414:	2b03      	cmp	r3, #3
- 8000416:	d829      	bhi.n	800046c <display7SegLed+0x84>
- 8000418:	a201      	add	r2, pc, #4	; (adr r2, 8000420 <display7SegLed+0x38>)
- 800041a:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 800041e:	bf00      	nop
- 8000420:	08000431 	.word	0x08000431
- 8000424:	0800043f 	.word	0x0800043f
- 8000428:	0800044d 	.word	0x0800044d
- 800042c:	0800045b 	.word	0x0800045b
+ 80003f4:	2132      	movs	r1, #50	; 0x32
+ 80003f6:	2000      	movs	r0, #0
+ 80003f8:	f000 f9ec 	bl	80007d4 <setTimer>
+		setDigit(idx_e2);
+ 80003fc:	4b1e      	ldr	r3, [pc, #120]	; (8000478 <display7SegLed+0x90>)
+ 80003fe:	681b      	ldr	r3, [r3, #0]
+ 8000400:	4618      	mov	r0, r3
+ 8000402:	f7ff febf 	bl	8000184 <setDigit>
+		switch(idx_e2){
+ 8000406:	4b1c      	ldr	r3, [pc, #112]	; (8000478 <display7SegLed+0x90>)
+ 8000408:	681b      	ldr	r3, [r3, #0]
+ 800040a:	2b03      	cmp	r3, #3
+ 800040c:	d822      	bhi.n	8000454 <display7SegLed+0x6c>
+ 800040e:	a201      	add	r2, pc, #4	; (adr r2, 8000414 <display7SegLed+0x2c>)
+ 8000410:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8000414:	08000425 	.word	0x08000425
+ 8000418:	08000431 	.word	0x08000431
+ 800041c:	0800043d 	.word	0x0800043d
+ 8000420:	08000449 	.word	0x08000449
 			case 0: {
-				idx_e2 = 1;
- 8000430:	4b10      	ldr	r3, [pc, #64]	; (8000474 <display7SegLed+0x8c>)
- 8000432:	2201      	movs	r2, #1
- 8000434:	601a      	str	r2, [r3, #0]
-				num_e2 = 2;
- 8000436:	4b10      	ldr	r3, [pc, #64]	; (8000478 <display7SegLed+0x90>)
- 8000438:	2202      	movs	r2, #2
- 800043a:	601a      	str	r2, [r3, #0]
+				display7SEG(num_e2[0]);
+ 8000424:	4b15      	ldr	r3, [pc, #84]	; (800047c <display7SegLed+0x94>)
+ 8000426:	681b      	ldr	r3, [r3, #0]
+ 8000428:	4618      	mov	r0, r3
+ 800042a:	f7ff ff1f 	bl	800026c <display7SEG>
 				break;
- 800043c:	e017      	b.n	800046e <display7SegLed+0x86>
+ 800042e:	e012      	b.n	8000456 <display7SegLed+0x6e>
 			}
 			case 1: {
-				idx_e2 = 2;
- 800043e:	4b0d      	ldr	r3, [pc, #52]	; (8000474 <display7SegLed+0x8c>)
- 8000440:	2202      	movs	r2, #2
- 8000442:	601a      	str	r2, [r3, #0]
-				num_e2 = 3;
- 8000444:	4b0c      	ldr	r3, [pc, #48]	; (8000478 <display7SegLed+0x90>)
- 8000446:	2203      	movs	r2, #3
- 8000448:	601a      	str	r2, [r3, #0]
+				display7SEG(num_e2[1]);
+ 8000430:	4b12      	ldr	r3, [pc, #72]	; (800047c <display7SegLed+0x94>)
+ 8000432:	685b      	ldr	r3, [r3, #4]
+ 8000434:	4618      	mov	r0, r3
+ 8000436:	f7ff ff19 	bl	800026c <display7SEG>
 				break;
- 800044a:	e010      	b.n	800046e <display7SegLed+0x86>
+ 800043a:	e00c      	b.n	8000456 <display7SegLed+0x6e>
 			}
 			case 2: {
-				idx_e2 = 3;
- 800044c:	4b09      	ldr	r3, [pc, #36]	; (8000474 <display7SegLed+0x8c>)
- 800044e:	2203      	movs	r2, #3
- 8000450:	601a      	str	r2, [r3, #0]
-				num_e2 = 0;
- 8000452:	4b09      	ldr	r3, [pc, #36]	; (8000478 <display7SegLed+0x90>)
- 8000454:	2200      	movs	r2, #0
- 8000456:	601a      	str	r2, [r3, #0]
+				display7SEG(num_e2[2]);
+ 800043c:	4b0f      	ldr	r3, [pc, #60]	; (800047c <display7SegLed+0x94>)
+ 800043e:	689b      	ldr	r3, [r3, #8]
+ 8000440:	4618      	mov	r0, r3
+ 8000442:	f7ff ff13 	bl	800026c <display7SEG>
 				break;
- 8000458:	e009      	b.n	800046e <display7SegLed+0x86>
+ 8000446:	e006      	b.n	8000456 <display7SegLed+0x6e>
 			}
 			case 3: {
-				idx_e2 = 0;
- 800045a:	4b06      	ldr	r3, [pc, #24]	; (8000474 <display7SegLed+0x8c>)
- 800045c:	2200      	movs	r2, #0
- 800045e:	601a      	str	r2, [r3, #0]
-				num_e2 = 1;
- 8000460:	4b05      	ldr	r3, [pc, #20]	; (8000478 <display7SegLed+0x90>)
- 8000462:	2201      	movs	r2, #1
- 8000464:	601a      	str	r2, [r3, #0]
+				display7SEG(num_e2[3]);
+ 8000448:	4b0c      	ldr	r3, [pc, #48]	; (800047c <display7SegLed+0x94>)
+ 800044a:	68db      	ldr	r3, [r3, #12]
+ 800044c:	4618      	mov	r0, r3
+ 800044e:	f7ff ff0d 	bl	800026c <display7SEG>
 				break;
- 8000466:	e002      	b.n	800046e <display7SegLed+0x86>
+ 8000452:	e000      	b.n	8000456 <display7SegLed+0x6e>
 			}
 			default: {
 				break;
+ 8000454:	bf00      	nop
 			}
 		}
+		idx_e2++;
+ 8000456:	4b08      	ldr	r3, [pc, #32]	; (8000478 <display7SegLed+0x90>)
+ 8000458:	681b      	ldr	r3, [r3, #0]
+ 800045a:	3301      	adds	r3, #1
+ 800045c:	4a06      	ldr	r2, [pc, #24]	; (8000478 <display7SegLed+0x90>)
+ 800045e:	6013      	str	r3, [r2, #0]
+		if (idx_e2 >= 4) {
+ 8000460:	4b05      	ldr	r3, [pc, #20]	; (8000478 <display7SegLed+0x90>)
+ 8000462:	681b      	ldr	r3, [r3, #0]
+ 8000464:	2b03      	cmp	r3, #3
+ 8000466:	dd02      	ble.n	800046e <display7SegLed+0x86>
+			idx_e2 = 0;
+ 8000468:	4b03      	ldr	r3, [pc, #12]	; (8000478 <display7SegLed+0x90>)
+ 800046a:	2200      	movs	r2, #0
+ 800046c:	601a      	str	r2, [r3, #0]
+		}
 	}
- 8000468:	bf00      	nop
- 800046a:	e000      	b.n	800046e <display7SegLed+0x86>
-				break;
- 800046c:	bf00      	nop
 }
  800046e:	bf00      	nop
  8000470:	bd80      	pop	{r7, pc}
  8000472:	bf00      	nop
- 8000474:	2000002c 	.word	0x2000002c
- 8000478:	20000000 	.word	0x20000000
- 800047c:	20000058 	.word	0x20000058
+ 8000474:	20000064 	.word	0x20000064
+ 8000478:	20000038 	.word	0x20000038
+ 800047c:	20000000 	.word	0x20000000
 
 08000480 <displayDot>:
 void displayDot(){
@@ -594,7 +589,7 @@ void displayDot(){
 }
  800049c:	bf00      	nop
  800049e:	bd80      	pop	{r7, pc}
- 80004a0:	20000058 	.word	0x20000058
+ 80004a0:	20000064 	.word	0x20000064
  80004a4:	40010800 	.word	0x40010800
 
 080004a8 <exercise2_run>:
@@ -655,7 +650,7 @@ int main(void)
 	exercise2_run();
  80004d6:	f7ff ffe7 	bl	80004a8 <exercise2_run>
  80004da:	e7fc      	b.n	80004d6 <main+0x1e>
- 80004dc:	20000080 	.word	0x20000080
+ 80004dc:	2000008c 	.word	0x2000008c
 
 080004e0 <SystemClock_Config>:
 /**
@@ -853,7 +848,7 @@ static void MX_TIM2_Init(void)
  80005e6:	3718      	adds	r7, #24
  80005e8:	46bd      	mov	sp, r7
  80005ea:	bd80      	pop	{r7, pc}
- 80005ec:	20000080 	.word	0x20000080
+ 80005ec:	2000008c 	.word	0x2000008c
 
 080005f0 <MX_GPIO_Init>:
   * @brief GPIO Initialization Function
@@ -1306,7 +1301,7 @@ void TIM2_IRQHandler(void)
  80007be:	bf00      	nop
  80007c0:	bd80      	pop	{r7, pc}
  80007c2:	bf00      	nop
- 80007c4:	20000080 	.word	0x20000080
+ 80007c4:	2000008c 	.word	0x2000008c
 
 080007c8 <SystemInit>:
   * @note   This function should be used only after reset.
@@ -1356,8 +1351,8 @@ void setTimer(int index, int counter){
  80007f6:	46bd      	mov	sp, r7
  80007f8:	bc80      	pop	{r7}
  80007fa:	4770      	bx	lr
- 80007fc:	20000058 	.word	0x20000058
- 8000800:	20000030 	.word	0x20000030
+ 80007fc:	20000064 	.word	0x20000064
+ 8000800:	2000003c 	.word	0x2000003c
 
 08000804 <timerRun>:
 void timerRun(){
@@ -1410,8 +1405,8 @@ void timerRun(){
  8000856:	46bd      	mov	sp, r7
  8000858:	bc80      	pop	{r7}
  800085a:	4770      	bx	lr
- 800085c:	20000030 	.word	0x20000030
- 8000860:	20000058 	.word	0x20000058
+ 800085c:	2000003c 	.word	0x2000003c
+ 8000860:	20000064 	.word	0x20000064
 
 08000864 <Reset_Handler>:
   .weak Reset_Handler
@@ -1491,13 +1486,13 @@ LoopFillZerobss:
   ldr r0, =_sdata
  8000898:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 800089c:	20000010 	.word	0x20000010
+ 800089c:	2000001c 	.word	0x2000001c
   ldr r2, =_sidata
  80008a0:	08001ef4 	.word	0x08001ef4
   ldr r2, =_sbss
- 80008a4:	20000010 	.word	0x20000010
+ 80008a4:	2000001c 	.word	0x2000001c
   ldr r4, =_ebss
- 80008a8:	200000cc 	.word	0x200000cc
+ 80008a8:	200000d8 	.word	0x200000d8
 
 080008ac <ADC1_2_IRQHandler>:
  * @retval : None
@@ -1617,9 +1612,9 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  800092a:	3708      	adds	r7, #8
  800092c:	46bd      	mov	sp, r7
  800092e:	bd80      	pop	{r7, pc}
- 8000930:	20000004 	.word	0x20000004
- 8000934:	2000000c 	.word	0x2000000c
- 8000938:	20000008 	.word	0x20000008
+ 8000930:	20000010 	.word	0x20000010
+ 8000934:	20000018 	.word	0x20000018
+ 8000938:	20000014 	.word	0x20000014
 
 0800093c <HAL_IncTick>:
   * @note This function is declared as __weak to be overwritten in case of other
@@ -1644,8 +1639,8 @@ __weak void HAL_IncTick(void)
  8000952:	46bd      	mov	sp, r7
  8000954:	bc80      	pop	{r7}
  8000956:	4770      	bx	lr
- 8000958:	2000000c 	.word	0x2000000c
- 800095c:	200000c8 	.word	0x200000c8
+ 8000958:	20000018 	.word	0x20000018
+ 800095c:	200000d4 	.word	0x200000d4
 
 08000960 <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -1664,7 +1659,7 @@ __weak uint32_t HAL_GetTick(void)
  800096a:	46bd      	mov	sp, r7
  800096c:	bc80      	pop	{r7}
  800096e:	4770      	bx	lr
- 8000970:	200000c8 	.word	0x200000c8
+ 8000970:	200000d4 	.word	0x200000d4
 
 08000974 <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
@@ -3842,8 +3837,8 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  80015a8:	40022000 	.word	0x40022000
  80015ac:	40021000 	.word	0x40021000
  80015b0:	08001ec8 	.word	0x08001ec8
- 80015b4:	20000004 	.word	0x20000004
- 80015b8:	20000008 	.word	0x20000008
+ 80015b4:	20000010 	.word	0x20000010
+ 80015b8:	20000014 	.word	0x20000014
 
 080015bc <HAL_RCC_GetSysClockFreq>:
   *         right SYSCLK value. Otherwise, any configuration based on this function will be incorrect.
@@ -4018,7 +4013,7 @@ static void RCC_Delay(uint32_t mdelay)
  8001692:	46bd      	mov	sp, r7
  8001694:	bc80      	pop	{r7}
  8001696:	4770      	bx	lr
- 8001698:	20000004 	.word	0x20000004
+ 8001698:	20000010 	.word	0x20000010
  800169c:	10624dd3 	.word	0x10624dd3
 
 080016a0 <HAL_TIM_Base_Init>:

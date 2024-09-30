@@ -12,7 +12,7 @@
 #include "timer.h"
 #include "7_segment_led.h"
 
-extern int num_e2;
+extern int num_e2[4];
 extern int idx_e2;
 
 void init_exercise2();
