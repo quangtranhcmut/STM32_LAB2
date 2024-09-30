@@ -11,7 +11,7 @@
 #include "main.h"
 int timer_flag[10];
 int timer_counter[10];
-
+extern int TIMER_CYCLE;
 void setTimer(int index, int counter);
 void timerRun();
 void timer_isr();

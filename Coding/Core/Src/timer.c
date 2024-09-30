@@ -7,9 +7,10 @@
 
 #include "timer.h"
 
+int TIMER_CYCLE = 10;
 void setTimer(int index, int counter){
 	timer_flag[index] = 0;
-	timer_counter[index] = counter;
+	timer_counter[index] = counter / TIMER_CYCLE;
 }
 void timerRun(){
 	for (int i = 0; i < 10; i++) {
