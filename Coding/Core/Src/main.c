@@ -90,7 +90,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  init_exercise3();
+//  init_exercise3();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,7 +100,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	exercise3_run();
+//	exercise3_run();
 
   }
   /* USER CODE END 3 */
@@ -228,8 +228,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int index_7seg = 0;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timerRun();
+	update7SEG(index_7seg++);
+	if(index_7seg >= 4) {
+		index_7seg = 0;
+	}
 }
 /* USER CODE END 4 */
 

@@ -136,22 +136,3 @@ void update7SEG(int index) {
     }
 }
 
-void init_exercise3(){
-	resetAllDigits();
-	HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, 0);
-	setTimer(1, 50);
-	setTimer(2, 50);
-}
-void exercise3_run(){
-	if (timer_flag[1] == 1){
-		setTimer(1, 100);
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	}
-	if (timer_flag[2] == 1){
-		setTimer(2, 50);
-		update7SEG(index_led++);
-		if (index_led >= MAX_LED) {
-			index_led = 0;
-		}
-	}
-}
