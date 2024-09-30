@@ -3,3 +3,4 @@
 7_segment_led.c:42:6:setNum2Digit	24	static
 7_segment_led.c:52:6:display7SEG	32	static
 7_segment_led.c:103:6:update7SEG	16	static
+7_segment_led.c:139:6:updateClockBuffer	16	static

@@ -15,5 +15,5 @@ void setDigit(int digitSerial);
 void setNum2Digit(int a, int b, int c, int d, int e, int f, int g);
 void display7SEG(int num);
 void update7SEG(int index);
-
+void updateClockBuffer(int hour, int minute);
 #endif /* INC_7_SEGMENT_LED_H_ */

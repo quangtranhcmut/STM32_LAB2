@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "exercise1.h"
+#include "7_segment_led.h"
+#include "timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,7 +91,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-//  init_exercise3();
+  int hour = 15 , minute = 8 , second = 50;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,7 +101,21 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	exercise3_run();
+	  second++;
+	  if(second >= 60) {
+		  second = 0;
+		  minute++;
+	  }
+	  if(minute >= 60) {
+		  minute = 0;
+		  hour++;
+	  }
+	  if(hour >= 24) {
+		  hour = 0;
+	  }
+	  updateClockBuffer(hour, minute);
+	  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+	  HAL_Delay(1000);
 
   }
   /* USER CODE END 3 */
