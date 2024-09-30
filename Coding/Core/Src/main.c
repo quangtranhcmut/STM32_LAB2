@@ -93,6 +93,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   resetAllColumns();
+  setTimer(0, 0);
   int idx_col = 0;
   /* USER CODE END 2 */
 
@@ -103,12 +104,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  updateLEDMatrix(idx_col);
-	  idx_col++;
-	  if (idx_col >= 8) {
-		  idx_col = 0;
+	  if (timer_flag[0] == 1) {
+		  setTimer(0, 10);
+		  updateLEDMatrix(idx_col);
+		  idx_col++;
+		  if (idx_col >= 8) {
+			  idx_col = 0;
+		  }
 	  }
-	  HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
