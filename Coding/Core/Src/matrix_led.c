@@ -70,3 +70,23 @@ void updateLEDMatrix(int index) {
     HAL_GPIO_WritePin(ROW6_GPIO_Port, ROW6_Pin, matrix_buffer[index] & 0x40);
     HAL_GPIO_WritePin(ROW7_GPIO_Port, ROW7_Pin, matrix_buffer[index] & 0x80);
 }
+
+void shiftLeft() {
+    uint8_t temp0 = (matrix_buffer[0] & 0x80) >> 7;
+    uint8_t temp1 = (matrix_buffer[1] & 0x80) >> 7;
+    uint8_t temp2 = (matrix_buffer[2] & 0x80) >> 7;
+    uint8_t temp3 = (matrix_buffer[3] & 0x80) >> 7;
+    uint8_t temp4 = (matrix_buffer[4] & 0x80) >> 7;
+    uint8_t temp5 = (matrix_buffer[5] & 0x80) >> 7;
+    uint8_t temp6 = (matrix_buffer[6] & 0x80) >> 7;
+    uint8_t temp7 = (matrix_buffer[7] & 0x80) >> 7;
+
+    matrix_buffer[0] = (matrix_buffer[0] << 1) | temp0;
+    matrix_buffer[1] = (matrix_buffer[1] << 1) | temp1;
+    matrix_buffer[2] = (matrix_buffer[2] << 1) | temp2;
+    matrix_buffer[3] = (matrix_buffer[3] << 1) | temp3;
+    matrix_buffer[4] = (matrix_buffer[4] << 1) | temp4;
+    matrix_buffer[5] = (matrix_buffer[5] << 1) | temp5;
+    matrix_buffer[6] = (matrix_buffer[6] << 1) | temp6;
+    matrix_buffer[7] = (matrix_buffer[7] << 1) | temp7;
+}

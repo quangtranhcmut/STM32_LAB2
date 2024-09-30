@@ -11,5 +11,5 @@
 #include "main.h"
 void resetAllColumns();
 void updateLEDMatrix(int index);
-
+void shiftLeft();
 #endif /* INC_MATRIX_LED_H_ */

@@ -94,7 +94,9 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim2);
   resetAllColumns();
   setTimer(0, 0);
+  setTimer(1, 0);
   int idx_col = 0;
+  int shiftCounter = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -105,11 +107,19 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  if (timer_flag[0] == 1) {
-		  setTimer(0, 10);
+		  setTimer(0, 2);
 		  updateLEDMatrix(idx_col);
 		  idx_col++;
 		  if (idx_col >= 8) {
 			  idx_col = 0;
+		  }
+	  }
+	  if (timer_flag[1] == 1) {
+		  setTimer(1, 50);
+		  shiftCounter++;
+		  if (shiftCounter > 10) {
+			  shiftLeft();
+			  shiftCounter = 0;
 		  }
 	  }
   }
