@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Core/Src/7_segment_led.c \
 ../Core/Src/main.c \
+../Core/Src/matrix_led.c \
 ../Core/Src/stm32f1xx_hal_msp.c \
 ../Core/Src/stm32f1xx_it.c \
 ../Core/Src/syscalls.c \
@@ -17,6 +18,7 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/7_segment_led.o \
 ./Core/Src/main.o \
+./Core/Src/matrix_led.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
 ./Core/Src/stm32f1xx_it.o \
 ./Core/Src/syscalls.o \
@@ -27,6 +29,7 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/7_segment_led.d \
 ./Core/Src/main.d \
+./Core/Src/matrix_led.d \
 ./Core/Src/stm32f1xx_hal_msp.d \
 ./Core/Src/stm32f1xx_it.d \
 ./Core/Src/syscalls.d \

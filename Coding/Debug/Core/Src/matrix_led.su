@@ -1,0 +1,2 @@
+matrix_led.c:10:6:resetAllColumns	8	static
+matrix_led.c:24:6:updateLEDMatrix	16	static
